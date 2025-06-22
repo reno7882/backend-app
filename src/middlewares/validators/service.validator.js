@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator')
 // Validar creación de servicio
 const validateCreateService = [
   body('nombre')
-    .notEmpty().withMessage('El nombre del servicio es obligatorio').escape(),
+    .notEmpty().withMessage('El nombre del servicio es obligatorio o contiene caracteres invalidos').escape(),
   body('precio')
     .isNumeric().withMessage('El precio debe ser un número')
     .notEmpty().withMessage('El precio es obligatorio'),
