@@ -144,7 +144,7 @@ const helmet = require('helmet')
 
 // 🛡️ Seguridad adicional
 const rateLimit = require('express-rate-limit')
-const mongoSanitize = require('express-mongo-sanitize')
+// const mongoSanitize = require('express-mongo-sanitize')
 const { xss } = require('express-xss-sanitizer') // ✅ reemplazo moderno
 
 // 🧱 Middlewares de seguridad
