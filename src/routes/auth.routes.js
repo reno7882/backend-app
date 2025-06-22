@@ -21,11 +21,24 @@
 
 // DIVISIÓN DE CÓDIGO FASE 3 -----------------------------
 
+// const express = require('express')
+// const router = express.Router()
+// const authController = require('../controllers/auth.controller')
+
+// router.post('/register', authController.register) // 👈 sin paréntesis
+// router.post('/login', authController.login) // 👈 sin paréntesis
+
+// module.exports = router
+
+// División de código fase 8 VALIDACIONES --------------------
+
 const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/auth.controller')
+const { validateRegister, validateLogin } = require('../middlewares/validators/auth.validator')
 
-router.post('/register', authController.register) // 👈 sin paréntesis
-router.post('/login', authController.login) // 👈 sin paréntesis
+// Ahora aplicamos los middlewares antes del controlador
+router.post('/register', validateRegister, authController.register)
+router.post('/login', validateLogin, authController.login)
 
 module.exports = router

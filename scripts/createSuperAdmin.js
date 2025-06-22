@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI).then(async () => {
     username: 'superadmin',
     email: 'admin@ejemplo.com',
     password: hashedPassword,
-    role: 'admin'
+    role: 'superadmin'
   })
 
   await admin.save()
