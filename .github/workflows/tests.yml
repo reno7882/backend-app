@@ -1,0 +1,30 @@
+name: Ejecutar tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      JWT_SECRET: ${{ secrets.JWT_SECRET }} # Usa el secreto configurado en GitHub
+
+    steps:
+      - name: 🧾 Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: 🟢 Usar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # o la versión que uses localmente
+
+      - name: 📦 Instalar dependencias
+        run: npm ci
+
+      - name: 🧪 Ejecutar pruebas
+        run: npm test

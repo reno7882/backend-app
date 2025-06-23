@@ -245,14 +245,16 @@ exports.deleteService = async (req, res) => {
       return res.status(404).json({ message: 'Servicio no encontrado' })
     }
 
-    // 🛡️ Ownership check
-    if (service.creadoPor.toString() !== req.user.userId && req.user.role !== 'superadmin') {
+    // 🛡️ Ownership check seguro
+    const creadoPorId = service.creadoPor ? service.creadoPor.toString() : null
+    if (creadoPorId !== req.user.userId && req.user.role !== 'superadmin') {
       return res.status(403).json({ message: 'No tienes permiso para eliminar este servicio' })
     }
 
     await service.deleteOne()
     res.json({ message: 'Servicio eliminado' })
   } catch (err) {
+    console.error('Error en deleteService:', err) // para que puedas ver el error en consola
     res.status(500).json({ message: 'Error al eliminar' })
   }
 }

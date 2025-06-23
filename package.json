@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,10 @@
     "mongoose": "^8.16.0"
   },
   "devDependencies": {
-    "standard": "^17.1.2"
+    "jest": "^30.0.2",
+    "mongodb-memory-server": "^10.1.4",
+    "standard": "^17.1.2",
+    "supertest": "^7.1.1"
   },
   "eslintConfig": {
     "extends": "standard"

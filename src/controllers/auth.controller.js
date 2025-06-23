@@ -180,7 +180,7 @@ exports.login = async (req, res) => {
       { expiresIn: '1h' }
     )
 
-    res.json({ token })
+    res.json({ token, user })
   } catch (error) {
     console.error('Error en login:', error.message)
     res.status(500).json({ message: 'Error del servidor' })
