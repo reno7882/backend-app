@@ -184,7 +184,9 @@
 // module.exports = app
 
 // División de código fase 10 TESTING -----------------------------
-require('dotenv').config() // ⬅️ Añade esta línea
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env'
+}) // ⬅️ Añade esta línea
 const express = require('express')
 const app = express()
 const cors = require('cors')
