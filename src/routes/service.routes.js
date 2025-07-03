@@ -59,7 +59,8 @@ const authorizeRoles = require('../middlewares/role.middleware')
 const serviceController = require('../controllers/service.controller')
 const {
   validateCreateService,
-  validateUpdateService
+  validateUpdateService,
+  validateMongoIdParam
 } = require('../middlewares/validators/service.validator')
 const handleValidation = require('../middlewares/handle.Validation')
 
@@ -69,6 +70,7 @@ router.post(
   authenticateToken,
   authorizeRoles('admin', 'superadmin'),
   validateCreateService,
+  handleValidation,
   serviceController.createService
 )
 
@@ -93,6 +95,8 @@ router.delete(
   '/:id',
   authenticateToken,
   authorizeRoles('admin', 'superadmin'),
+  validateMongoIdParam,
+  handleValidation,
   serviceController.deleteService
 )
 

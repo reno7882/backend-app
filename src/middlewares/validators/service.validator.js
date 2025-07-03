@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator')
+const { body, param, validationResult } = require('express-validator')
 
 // Validar creación de servicio
 const validateCreateService = [
@@ -35,7 +35,21 @@ const validateUpdateService = [
   }
 ]
 
+// Validar ID para rutas que usan :id
+const validateMongoIdParam = [
+  param('id')
+    .isMongoId().withMessage('El ID proporcionado no es válido'),
+  (req, res, next) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+    next()
+  }
+]
+
 module.exports = {
   validateCreateService,
-  validateUpdateService
+  validateUpdateService,
+  validateMongoIdParam
 }
