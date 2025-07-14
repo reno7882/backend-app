@@ -1,3 +1,5 @@
+/* eslint-disable  */
+
 require('dotenv').config({ path: '.env.test' })
 
 const db = require('./setup')
