@@ -1,4 +1,3 @@
-/* eslint-env jest */
 // tests/service.integration.test.js
 const request = require('supertest')
 const app = require('../src/app')
